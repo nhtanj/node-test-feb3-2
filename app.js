@@ -21,6 +21,13 @@ app.use(express.static(__dirname + '/public'));
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
 
+app.get('/delay', function(req, res) {
+	setTimeout(function () {
+	  	console.log("Sleeping for 5 secs");
+	  	return res.sendStatus(200);
+	  }, 5000);
+});
+
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
   // print a message when the server starts listening
